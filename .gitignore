@@ -1,0 +1,61 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+*.userprefs
+*.csproj.user
+*.dbmdl
+*.jfm
+*.log
+
+# ASP.NET
+wwwroot/lib/
+App_Data/
+logs/
+
+# Visual Studio
+.vs/
+*.sln.ide/
+*.swp
+*~
+
+# Rider
+.idea/
+*.sln.iml
+
+# NuGet
+packages/
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Docker
+docker/.env
+
+# Environment
+.env
+*.env.local
+
+# Uploads
+uploads/
+**/uploads/imports/*
+
+# OS
+.DS_Store
+Thumbs.db

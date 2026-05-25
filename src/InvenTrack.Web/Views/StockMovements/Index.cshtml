@@ -1,0 +1,78 @@
+@using InvenTrack.Application.DTOs.StockMovements
+@model PagedResult<StockMovementDto>
+@{
+    ViewData["Title"] = "Stock Movements";
+}
+
+<h1><i class="fas fa-exchange-alt me-2"></i>Stock Movements</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+            <div class="col-md-3">
+                <input type="text" name="productId" class="form-control" placeholder="Product ID" value="@ViewBag.ProductId" />
+            </div>
+            <div class="col-md-2">
+                <select name="type" class="form-select">
+                    <option value="">All Types</option>
+                    <option value="IN" selected="@(ViewBag.Type == "IN")">IN</option>
+                    <option value="OUT" selected="@(ViewBag.Type == "OUT")">OUT</option>
+                    <option value="ADJUSTMENT" selected="@(ViewBag.Type == "ADJUSTMENT")">ADJUSTMENT</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="from" class="form-control" value="@ViewBag.From?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="to" class="form-control" value="@ViewBag.To?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i></button>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead class="table-dark">
+                    <tr><th>Date</th><th>Product</th><th>SKU</th><th>Type</th><th>Qty</th><th>Before</th><th>After</th><th>User</th><th>Reference</th></tr>
+                </thead>
+                <tbody>
+                    @if (Model.Items.Any())
+                    {
+                        foreach (var m in Model.Items)
+                        {
+                            var badgeClass = m.MovementType == "IN" ? "bg-success" : m.MovementType == "OUT" ? "bg-danger" : "bg-warning";
+                            <tr>
+                                <td>@m.CreatedAt.ToString("g")</td>
+                                <td>@m.ProductName</td>
+                                <td>@m.ProductSku</td>
+                                <td><span class="badge @badgeClass">@m.MovementType</span></td>
+                                <td class="fw-bold">@m.Quantity</td>
+                                <td>@m.QuantityBefore</td>
+                                <td>@m.QuantityAfter</td>
+                                <td>@m.UserName</td>
+                                <td>@m.Reference</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="9" class="text-center py-3">No movements found.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav><ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.Page ? "active" : "")">
+                        <a class="page-link" href="?page=@i&productId=@ViewBag.ProductId&type=@ViewBag.Type&from=@ViewBag.From&to=@ViewBag.To">@i</a>
+                    </li>
+                }
+            </ul></nav>
+        }
+    </div>
+</div>

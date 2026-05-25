@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1><i class="fas fa-chart-bar me-2"></i>Reports</h1>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white"><i class="fas fa-file-pdf"></i> PDF Export</div>
+            <div class="card-body">
+                <p class="card-text">Generate and download a complete inventory report in PDF format with executive summary, category breakdown, and full inventory table.</p>
+                <a href="/api/v1/reports/export/pdf" class="btn btn-primary" target="_blank"><i class="fas fa-download"></i> Download PDF</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-success text-white"><i class="fas fa-file-excel"></i> Excel Export</div>
+            <div class="card-body">
+                <p class="card-text">Generate and download an Excel report with multiple worksheets: Summary, Full Inventory, Low Stock, and By Category.</p>
+                <a href="/api/v1/reports/export/excel" class="btn btn-success" target="_blank"><i class="fas fa-download"></i> Download Excel</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-info text-white"><i class="fas fa-list"></i> Quick Views</div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/api/v1/reports/inventory-summary" class="btn btn-outline-primary btn-sm" target="_blank"><i class="fas fa-eye"></i> Inventory Summary</a>
+                    <a href="/api/v1/reports/low-stock" class="btn btn-outline-warning btn-sm" target="_blank"><i class="fas fa-eye"></i> Low Stock Items</a>
+                    <a href="/api/v1/reports/valuation" class="btn btn-outline-info btn-sm" target="_blank"><i class="fas fa-eye"></i> Inventory Valuation</a>
+                    <a href="/api/v1/reports/top-products" class="btn btn-outline-secondary btn-sm" target="_blank"><i class="fas fa-eye"></i> Top Moving Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-header bg-secondary text-white"><i class="fas fa-search"></i> Custom Report</div>
+    <div class="card-body">
+        <form method="get" class="row g-3" target="_blank">
+            <div class="col-md-4">
+                <label class="form-label">Report Type</label>
+                <select class="form-select" id="reportType">
+                    <option value="movements">Stock Movements</option>
+                    <option value="top-products">Top Moving Products</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">From Date</label>
+                <input type="date" class="form-control" id="fromDate" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">To Date</label>
+                <input type="date" class="form-control" id="toDate" />
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-primary w-100" onclick="openReport()"><i class="fas fa-external-link-alt"></i> Open</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openReport() {
+            const type = document.getElementById('reportType').value;
+            const from = document.getElementById('fromDate').value;
+            const to = document.getElementById('toDate').value;
+            let url = `/api/v1/reports/${type}`;
+            const params = [];
+            if (from) params.push(`from=${from}`);
+            if (to) params.push(`to=${to}`);
+            if (params.length) url += '?' + params.join('&');
+            window.open(url, '_blank');
+        }
+    </script>
+}

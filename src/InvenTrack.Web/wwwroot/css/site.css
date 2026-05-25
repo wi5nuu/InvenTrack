@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+}
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    transition: margin 0.25s ease-out;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+.list-group-item {
+    border: none;
+    padding: 12px 20px;
+    transition: all 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+    padding-left: 25px;
+}
+
+.card {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    font-weight: 600;
+}
+
+.border-left-primary { border-left: 4px solid #4e73df; }
+.border-left-success { border-left: 4px solid #1cc88a; }
+.border-left-warning { border-left: 4px solid #f6c23e; }
+.border-left-danger { border-left: 4px solid #e74a3b; }
+
+.text-xs { font-size: 0.7rem; }
+
+.table th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.btn {
+    border-radius: 0.3rem;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.progress {
+    height: 25px;
+    border-radius: 0.3rem;
+}
+
+.toast {
+    opacity: 1 !important;
+}
+
+#menu-toggle {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+}
