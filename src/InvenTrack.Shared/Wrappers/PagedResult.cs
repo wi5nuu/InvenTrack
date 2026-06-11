@@ -1,5 +1,6 @@
 namespace InvenTrack.Shared.Wrappers;
 
+/// <summary>Generic paged result wrapper for paginated queries.</summary>
 public class PagedResult<T>
 {
     public IEnumerable<T> Items { get; set; } = new List<T>();

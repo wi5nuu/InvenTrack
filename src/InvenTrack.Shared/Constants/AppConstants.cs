@@ -1,5 +1,6 @@
 namespace InvenTrack.Shared.Constants;
 
+/// <summary>Centralized application constants for roles, policies, caching, and limits.</summary>
 public static class AppConstants
 {
     public static class Roles

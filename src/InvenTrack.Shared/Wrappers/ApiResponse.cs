@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace InvenTrack.Shared.Wrappers;
 
+/// <summary>Standardized API response wrapper with pagination, error, and tracing support.</summary>
 public class ApiResponse<T>
 {
     public bool Success { get; set; }
@@ -46,6 +47,7 @@ public class ApiResponse<T>
     }
 }
 
+/// <summary>Pagination metadata for list endpoints.</summary>
 public class PaginationInfo
 {
     public int Page { get; set; }

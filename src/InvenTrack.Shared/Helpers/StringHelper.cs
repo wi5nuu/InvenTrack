@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace InvenTrack.Shared.Helpers;
 
+/// <summary>String validation and manipulation helpers.</summary>
 public static partial class StringHelper
 {
     public static bool IsValidSku(string sku)
