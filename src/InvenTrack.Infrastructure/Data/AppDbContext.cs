@@ -59,6 +59,9 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Unit).HasMaxLength(20).HasDefaultValue("pcs");
             entity.Property(e => e.ImageUrl).HasMaxLength(500);
 
+            entity.HasIndex(e => e.CategoryId);
+            entity.HasIndex(e => e.SupplierId);
+
             entity.HasOne(e => e.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(e => e.CategoryId)
@@ -75,6 +78,10 @@ public class AppDbContext : DbContext
             entity.Property(e => e.MovementType).HasConversion<string>().HasMaxLength(20);
             entity.Property(e => e.Reference).HasMaxLength(200);
             entity.Property(e => e.Notes).HasMaxLength(1000);
+
+            entity.HasIndex(e => e.ProductId);
+            entity.HasIndex(e => e.UserId);
+            entity.HasIndex(e => new { e.MovementType, e.CreatedAt });
 
             entity.HasOne(e => e.Product)
                 .WithMany(p => p.StockMovements)
@@ -93,6 +100,9 @@ public class AppDbContext : DbContext
             entity.Property(e => e.FileType).HasConversion<string>().HasMaxLength(20);
             entity.Property(e => e.Status).HasConversion<string>().HasMaxLength(20);
 
+            entity.HasIndex(e => e.UserId);
+            entity.HasIndex(e => e.Status);
+
             entity.HasOne(e => e.User)
                 .WithMany(u => u.ImportJobs)
                 .HasForeignKey(e => e.UserId)
@@ -103,6 +113,9 @@ public class AppDbContext : DbContext
         {
             entity.Property(e => e.AlertType).HasConversion<string>().HasMaxLength(20);
             entity.Property(e => e.SentTo).HasMaxLength(500);
+
+            entity.HasIndex(e => e.ProductId);
+            entity.HasIndex(e => e.AlertType);
 
             entity.HasOne(e => e.Product)
                 .WithMany(p => p.AlertLogs)
@@ -117,6 +130,10 @@ public class AppDbContext : DbContext
             entity.Property(e => e.EntityId).HasMaxLength(50);
             entity.Property(e => e.IpAddress).HasMaxLength(50);
             entity.Property(e => e.UserAgent).HasMaxLength(500);
+
+            entity.HasIndex(e => e.UserId);
+            entity.HasIndex(e => e.Action);
+            entity.HasIndex(e => e.CreatedAt);
 
             entity.HasOne(e => e.User)
                 .WithMany(u => u.AuditLogs)
