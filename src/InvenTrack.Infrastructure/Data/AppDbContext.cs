@@ -18,9 +18,29 @@ public class AppDbContext : DbContext
     public DbSet<AlertLog> AlertLogs => Set<AlertLog>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+        {
+            if (entry.State == EntityState.Modified)
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+        }
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Global query filter for soft delete
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+            .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType)))
+        {
+            var method = typeof(ModelBuilder).GetMethod("Entity", Type.EmptyTypes);
+            if (method == null) continue;
+            modelBuilder.Entity(entityType.ClrType).HasQueryFilter(
+                (BaseEntity e) => !e.IsDeleted);
+        }
 
         modelBuilder.Entity<User>(entity =>
         {
