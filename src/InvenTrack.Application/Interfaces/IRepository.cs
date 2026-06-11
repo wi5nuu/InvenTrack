@@ -3,6 +3,7 @@ using InvenTrack.Shared.Wrappers;
 
 namespace InvenTrack.Application.Interfaces;
 
+/// <summary>Generic repository with CRUD and pagination for all domain entities.</summary>
 public interface IRepository<T> where T : BaseEntity
 {
     Task<T?> GetByIdAsync(int id);

@@ -3,6 +3,7 @@ using InvenTrack.Shared.Wrappers;
 
 namespace InvenTrack.Application.Interfaces;
 
+/// <summary>Authentication and authorization service with JWT + refresh token rotation.</summary>
 public interface IAuthService
 {
     Task<ApiResponse<LoginResponseDto>> LoginAsync(LoginRequestDto request, string? ipAddress = null, string? userAgent = null);
