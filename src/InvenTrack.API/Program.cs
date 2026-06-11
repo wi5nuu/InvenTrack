@@ -93,13 +93,26 @@ builder.Services.AddAuthorization();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-// CORS
+// CORS with environment-aware policies
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("Development", policy =>
     {
         policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
+    options.AddPolicy("Production", policy =>
+    {
+        policy.WithOrigins("https://inventrack.local")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
+// Response compression for faster payload delivery
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
 });
 
 var app = builder.Build();
@@ -120,7 +133,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors("AllowAll");
+app.UseResponseCompression();
+app.UseCors(app.Environment.IsDevelopment() ? "Development" : "Production");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<AuditMiddleware>();  // After auth — reads user claims
