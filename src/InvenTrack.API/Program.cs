@@ -10,6 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
+/// <summary>
+/// InvenTrack Enterprise API — entry point.
+/// Configures JWT auth, Swagger, custom middleware pipeline, Serilog,
+/// and auto-seeds the database on first run.
+/// </summary>
 var builder = WebApplication.CreateBuilder(args);
 
 // Serilog configuration — reads sinks from appsettings.json
@@ -131,4 +136,5 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
+/// <summary>Entry point for the API host. Used by integration tests via WebApplicationFactory.</summary>
 public partial class Program { }
