@@ -1,18 +1,19 @@
 namespace InvenTrack.Domain.Entities;
 
+/// <summary>Inventory product with stock tracking and alert configuration.</summary>
 public class Product : BaseEntity
 {
     public string SKU { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }
     public int CategoryId { get; set; }
-    public Category Category { get; set; } = null!;
+    public Category? Category { get; set; }
     public int? SupplierId { get; set; }
     public Supplier? Supplier { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal CostPrice { get; set; }
     public int StockQuantity { get; set; }
-    public int MinStockThreshold { get; set; }
+    public int ReorderLevel { get; set; } = 10;
     public string Unit { get; set; } = "pcs";
     public string? ImageUrl { get; set; }
     public bool IsActive { get; set; } = true;

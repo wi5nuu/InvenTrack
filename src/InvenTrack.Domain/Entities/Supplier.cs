@@ -1,5 +1,6 @@
 namespace InvenTrack.Domain.Entities;
 
+/// <summary>Supplier/vendor that provides products to the inventory.</summary>
 public class Supplier : BaseEntity
 {
     public string Name { get; set; } = string.Empty;

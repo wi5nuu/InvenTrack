@@ -1,5 +1,6 @@
 namespace InvenTrack.Domain.Entities;
 
+/// <summary>Product category for organizing inventory items.</summary>
 public class Category : BaseEntity
 {
     public string Name { get; set; } = string.Empty;

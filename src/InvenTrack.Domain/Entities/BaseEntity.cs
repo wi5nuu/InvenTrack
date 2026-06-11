@@ -1,5 +1,6 @@
 namespace InvenTrack.Domain.Entities;
 
+/// <summary>Base class for all domain entities with common audit fields.</summary>
 public abstract class BaseEntity
 {
     public int Id { get; set; }
