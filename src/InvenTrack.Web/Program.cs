@@ -6,6 +6,11 @@ using InvenTrack.Web.Middleware;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Serilog;
 
+/// <summary>
+/// InvenTrack Enterprise Web UI — entry point.
+/// Configures Cookie auth, MVC pipeline, Serilog logging,
+/// and auto-seeds the database on first run.
+/// </summary>
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
