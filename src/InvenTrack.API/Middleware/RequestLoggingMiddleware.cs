@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Serilog;
 
 namespace InvenTrack.API.Middleware;
 
@@ -36,14 +35,7 @@ public class RequestLoggingMiddleware
 
         sw.Stop();
 
-        Log.ForContext("RequestMethod", method)
-           .ForContext("RequestPath", path)
-           .ForContext("QueryString", queryString)
-           .ForContext("IpAddress", ipAddress)
-           .ForContext("UserAgent", userAgent)
-           .ForContext("StatusCode", context.Response.StatusCode)
-           .ForContext("ElapsedMs", sw.ElapsedMilliseconds)
-           .Information("{Method} {Path} responded {StatusCode} in {ElapsedMs}ms",
-               method, path, context.Response.StatusCode, sw.ElapsedMilliseconds);
+        _logger.LogInformation("{Method} {Path} {StatusCode} {ElapsedMs}ms | IP: {IP} | Agent: {Agent}",
+            method, path, context.Response.StatusCode, sw.ElapsedMilliseconds, ipAddress, userAgent);
     }
 }

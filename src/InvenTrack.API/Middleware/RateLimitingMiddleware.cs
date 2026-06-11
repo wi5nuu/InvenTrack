@@ -67,5 +67,5 @@ public class RateLimitingMiddleware
 
 public class RateLimitCounter
 {
-    public int Count { get; set; } = 1;
+    public int Count { get; set; } = 0;
 }

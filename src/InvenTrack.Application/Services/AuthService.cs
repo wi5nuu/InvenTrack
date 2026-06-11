@@ -7,7 +7,6 @@ using InvenTrack.Application.DTOs.Auth;
 using InvenTrack.Application.Interfaces;
 using InvenTrack.Domain.Entities;
 using InvenTrack.Domain.Enums;
-using InvenTrack.Domain.Exceptions;
 using InvenTrack.Shared.Constants;
 using InvenTrack.Shared.Wrappers;
 using Microsoft.Extensions.Caching.Memory;

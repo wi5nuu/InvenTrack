@@ -15,9 +15,9 @@
             <div class="col-md-2">
                 <select name="type" class="form-select">
                     <option value="">All Types</option>
-                    <option value="IN" selected="@(ViewBag.Type == "IN")">IN</option>
-                    <option value="OUT" selected="@(ViewBag.Type == "OUT")">OUT</option>
-                    <option value="ADJUSTMENT" selected="@(ViewBag.Type == "ADJUSTMENT")">ADJUSTMENT</option>
+                    <option value="IN" @(ViewBag.Type == "IN" ? "selected" : "")>IN</option>
+                    <option value="OUT" @(ViewBag.Type == "OUT" ? "selected" : "")>OUT</option>
+                    <option value="ADJUSTMENT" @(ViewBag.Type == "ADJUSTMENT" ? "selected" : "")>ADJUSTMENT</option>
                 </select>
             </div>
             <div class="col-md-2">

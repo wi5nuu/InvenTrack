@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using InvenTrack.Application.DTOs.Products;
 using InvenTrack.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -34,9 +36,9 @@ public class ProductsController : Controller
 
     [HttpPost]
     [Authorize(Roles = "Admin,Manager")]
-    public async Task<IActionResult> Create(Application.DTOs.Products.CreateProductDto dto)
+    public async Task<IActionResult> Create(CreateProductDto dto)
     {
-        var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
         var result = await _productService.CreateAsync(dto, userId);
 
         if (result.Success)
@@ -61,9 +63,9 @@ public class ProductsController : Controller
 
     [HttpPost]
     [Authorize(Roles = "Admin,Manager")]
-    public async Task<IActionResult> Edit(int id, Application.DTOs.Products.UpdateProductDto dto)
+    public async Task<IActionResult> Edit(int id, UpdateProductDto dto)
     {
-        var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
         var result = await _productService.UpdateAsync(id, dto, userId);
 
         if (result.Success)

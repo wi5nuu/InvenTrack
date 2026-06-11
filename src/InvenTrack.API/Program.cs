@@ -12,11 +12,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Serilog configuration
+// Serilog configuration — reads sinks from appsettings.json
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
-    .WriteTo.Console()
-    .WriteTo.File("logs/inventrack-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Host.UseSerilog();
@@ -102,9 +100,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Middleware pipeline (order matters!)
+app.UseMiddleware<GlobalExceptionMiddleware>();  // FIRST — catches all exceptions
 app.UseMiddleware<SecurityHeadersMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
-app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseMiddleware<RateLimitingMiddleware>();
 
 if (app.Environment.IsDevelopment())
@@ -120,6 +118,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<AuditMiddleware>();  // After auth — reads user claims
 app.MapControllers();
 
 // Seed database on startup

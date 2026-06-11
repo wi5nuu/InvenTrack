@@ -29,7 +29,14 @@
                         {
                             foreach (var c in categories.Where(x => x.IsActive))
                             {
-                                <option value="@c.Id" selected="@(c.Id == Model.CategoryId)">@c.Name</option>
+                                if (c.Id == Model.CategoryId)
+                                {
+                                    <option value="@c.Id" selected>@c.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@c.Id">@c.Name</option>
+                                }
                             }
                         }
                     </select>
@@ -42,7 +49,14 @@
                         {
                             foreach (var s in suppliers.Where(x => x.IsActive))
                             {
-                                <option value="@s.Id" selected="@(s.Id == Model.SupplierId)">@s.Name</option>
+                                if (s.Id == Model.SupplierId)
+                                {
+                                    <option value="@s.Id" selected>@s.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@s.Id">@s.Name</option>
+                                }
                             }
                         }
                     </select>
@@ -66,11 +80,11 @@
                 <div class="col-md-2">
                     <label class="form-label">Unit</label>
                     <select name="Unit" class="form-select">
-                        <option selected="@(Model.Unit == "pcs")">pcs</option>
-                        <option selected="@(Model.Unit == "kg")">kg</option>
-                        <option selected="@(Model.Unit == "liter")">liter</option>
-                        <option selected="@(Model.Unit == "box")">box</option>
-                        <option selected="@(Model.Unit == "pack")">pack</option>
+                        <option value="pcs" @(Model.Unit == "pcs" ? "selected" : "")>pcs</option>
+                        <option value="kg" @(Model.Unit == "kg" ? "selected" : "")>kg</option>
+                        <option value="liter" @(Model.Unit == "liter" ? "selected" : "")>liter</option>
+                        <option value="box" @(Model.Unit == "box" ? "selected" : "")>box</option>
+                        <option value="pack" @(Model.Unit == "pack" ? "selected" : "")>pack</option>
                     </select>
                 </div>
                 <div class="col-12">

@@ -1,6 +1,3 @@
-using System.Net;
-using InvenTrack.Domain.Exceptions;
-
 namespace InvenTrack.Web.Middleware;
 
 public class GlobalExceptionMiddleware

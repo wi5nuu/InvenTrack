@@ -1,3 +1,5 @@
+using InvenTrack.Domain.Enums;
+
 namespace InvenTrack.Domain.Entities;
 
 public class User : BaseEntity

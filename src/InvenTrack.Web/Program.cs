@@ -1,12 +1,9 @@
-using System.Text;
 using InvenTrack.Application;
 using InvenTrack.Infrastructure;
 using InvenTrack.Infrastructure.Data;
 using InvenTrack.Infrastructure.Data.Seed;
 using InvenTrack.Web.Middleware;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

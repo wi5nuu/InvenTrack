@@ -24,8 +24,8 @@
                         <td>@cat.ProductCount</td>
                         <td>@(cat.IsActive ? "Active" : "Inactive")</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary" onclick="editCategory(@cat.Id, '@cat.Name', '@cat.Description')"><i class="fas fa-edit"></i></button>
-                            <form method="post" action="/Categories/Delete/@cat.Id" class="d-inline" onsubmit="return confirm('Delete @cat.Name?')">
+                            <button class="btn btn-sm btn-outline-primary" onclick="editCategory(@cat.Id, '@System.Web.HttpUtility.JavaScriptStringEncode(cat.Name)', '@System.Web.HttpUtility.JavaScriptStringEncode(cat.Description ?? "")')"><i class="fas fa-edit"></i></button>
+                            <form method="post" action="/Categories/Delete/@cat.Id" class="d-inline" onsubmit="return confirm('Delete @System.Web.HttpUtility.JavaScriptStringEncode(cat.Name)?')">
                                 <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>

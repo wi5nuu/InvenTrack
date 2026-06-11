@@ -2,7 +2,6 @@ using AutoMapper;
 using InvenTrack.Application.DTOs.Products;
 using InvenTrack.Application.Interfaces;
 using InvenTrack.Domain.Entities;
-using InvenTrack.Domain.Exceptions;
 using InvenTrack.Shared.Wrappers;
 using Microsoft.Extensions.Logging;
 

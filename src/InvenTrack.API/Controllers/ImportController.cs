@@ -15,7 +15,7 @@ public class ImportController : BaseApiController
     }
 
     [HttpPost("upload")]
-    public async Task<IActionResult> Upload(IFormFile file)
+    public async Task<IActionResult> Upload([FromForm] IFormFile file)
     {
         var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
         var result = await _importService.UploadAsync(file, userId);

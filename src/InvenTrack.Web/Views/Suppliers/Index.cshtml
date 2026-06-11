@@ -25,8 +25,8 @@
                         <td>@(s.Phone ?? "-")</td>
                         <td>@s.ProductCount</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary" onclick="editSupplier(@s.Id,'@s.Name','@s.ContactPerson','@s.Email','@s.Phone','@s.Address')"><i class="fas fa-edit"></i></button>
-                            <form method="post" action="/Suppliers/Delete/@s.Id" class="d-inline" onsubmit="return confirm('Delete @s.Name?')">
+                            <button class="btn btn-sm btn-outline-primary" onclick='editSupplier(@s.Id,"@System.Web.HttpUtility.JavaScriptStringEncode(s.Name)","@System.Web.HttpUtility.JavaScriptStringEncode(s.ContactPerson ?? "")","@System.Web.HttpUtility.JavaScriptStringEncode(s.Email ?? "")","@System.Web.HttpUtility.JavaScriptStringEncode(s.Phone ?? "")","@System.Web.HttpUtility.JavaScriptStringEncode(s.Address ?? "")")'><i class="fas fa-edit"></i></button>
+                            <form method="post" action="/Suppliers/Delete/@s.Id" class="d-inline" onsubmit="return confirm('Delete @System.Web.HttpUtility.JavaScriptStringEncode(s.Name)?')">
                                 <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>

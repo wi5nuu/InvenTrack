@@ -60,7 +60,7 @@
                                 <td class="text-end">@product.StockValue.ToString("C")</td>
                                 <td>
                                     <a href="/Products/Edit/@product.Id" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
-                                    <form method="post" action="/Products/Delete/@product.Id" class="d-inline" onsubmit="return confirm('Delete @product.Name?')">
+                                    <form method="post" action="/Products/Delete/@product.Id" class="d-inline" onsubmit="return confirm('Delete @System.Web.HttpUtility.JavaScriptStringEncode(product.Name)?')">
                                         <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
