@@ -1,0 +1,11 @@
+SKU,Name,Description,Category,Supplier,UnitPrice,CostPrice,StockQuantity,Unit,ReorderLevel
+PRD-001,Laptop ThinkPad X1,Enterprise laptop for professionals,Electronics,TechSupplier Inc,15000000,12000000,50,pcs,10
+PRD-002,Wireless Mouse MX Master 3,Ergonomic wireless mouse,Accessories,TechSupplier Inc,850000,550000,200,pcs,25
+PRD-003,27-Inch 4K Monitor,Dell UltraSharp U2723QE,Electronics,DisplayPro Ltd,8500000,7000000,30,pcs,5
+PRD-004,Mechanical Keyboard RK100,RGB mechanical keyboard,Accessories,InputMasters,450000,300000,150,pcs,20
+PRD-005,USB-C Hub 7-in-1,Multi-port USB-C adapter,Cables,ConnectPlus,250000,180000,300,pcs,50
+PRD-006,500GB NVMe SSD,Samsung 980 Pro storage,Storage,StorageWorld,1200000,950000,80,pcs,15
+PRD-007,16GB DDR5 RAM,Kingston Fury memory module,Components,MemoryPro,650000,500000,120,pcs,20
+PRD-008,HDMI Cable 2m,High-speed HDMI 2.1 cable,Cables,ConnectPlus,85000,50000,500,pcs,100
+PRD-009,Webcam 4K,Logitech Brio 4K webcam,Electronics,TechSupplier Inc,1800000,1400000,45,pcs,10
+PRD-010,Wireless Charger,Qi-compatible 15W pad,Accessories,PowerUp,200000,130000,250,pcs,30
