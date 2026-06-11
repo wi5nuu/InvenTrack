@@ -1,0 +1,14 @@
+:root {
+  --swagger-bg: #1e1e1e;
+  --swagger-text: #e0e0e0;
+  --swagger-code-bg: #2d2d2d;
+  --swagger-h1: #ffffff;
+  --swagger-border: #333;
+}
+
+body { background: var(--swagger-bg); color: var(--swagger-text); }
+.swagger-ui .topbar { background: #111; }
+.swagger-ui .info .title { color: var(--swagger-h1); }
+.swagger-ui .opblock-tag { color: var(--swagger-text); }
+.swagger-ui .opblock .opblock-summary { border-color: var(--swagger-border); }
+.swagger-ui .opblock .opblock-summary-description { color: #aaa; }

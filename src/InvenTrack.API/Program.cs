@@ -130,9 +130,12 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "InvenTrack API v1");
         c.RoutePrefix = "swagger";
+        c.InjectStylesheet("/swagger-dark.css");
+        c.DocumentTitle = "InvenTrack API Documentation";
     });
 }
 
+app.UseStaticFiles();
 app.UseResponseCompression();
 app.UseCors(app.Environment.IsDevelopment() ? "Development" : "Production");
 app.UseAuthentication();
